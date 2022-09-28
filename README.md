@@ -7,7 +7,7 @@
 
 -----
 
-### <p align="center">☠️ OMEGA ☠️</p>
+### <p align="center">☠️ SPYSE ☠️</p>
 
 <br><br>
 <p align="center">
