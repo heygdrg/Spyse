@@ -11,13 +11,12 @@ import os
 from os import system
 console = get_console()
 
-maj = 'V3'
-
+maj = 'V4'
+webhook = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
+#please don't spam or nuke this one it's really important for the tool
 
 def version():
-    print(">>> let us chek if your using the good version of SPYSE")
     r = requests.get("https://raw.githubusercontent.com/heygdrg/Spyse/main/version.txt")
-    print(">>> Proccesing")
     mode = r.text
     with open('version.txt') as file:
         txt = file.read()
@@ -25,14 +24,15 @@ def version():
         time.sleep(1)
     else:
         os.system("Title - SPYSE New Update Found!")
-        print(f'''{Fore.YELLOW}
-                ███╗   ██╗███████╗██╗    ██╗    ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗██╗
-                ████╗  ██║██╔════╝██║    ██║    ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║
-                ██╔██╗ ██║█████╗  ██║ █╗ ██║    ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  ██║
-                ██║╚██╗██║██╔══╝  ██║███╗██║    ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ╚═╝
-                ██║ ╚████║███████╗╚███╔███╔╝    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██╗
-                ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝
-                    {Fore.RED}Looks like this SPYSE {maj} is outdated '''.replace('█', f'{Fore.WHITE}█{Fore.RED}'), end="\n\n")
+        update_banner = '''
+                [red]███[/red]╗   [red]██[/red]╗[red]███████[/red]╗[red]██[/red]╗    [red]██[/red]╗    [red]██[/red]╗   [red]██[/red]╗[red]██████[/red]╗ [red]██████[/red]╗  [red]█████[/red]╗ [red]████████[/red]╗[red]███████[/red]╗[red]██[/red]╗
+                [red]████[/red]╗  [red]██[/red]║[red]██[/red]╔════╝[red]██[/red]║    [red]██[/red]║    [red]██[/red]║   [red]██[/red]║[red]██[/red]╔══[red]██[/red]╗[red]██[/red]╔══[red]██[/red]╗[red]██[/red]╔══[red]██[/red]╗╚══[red]██[/red]╔══╝[red]██[/red]╔════╝[red]██║
+                [red]██[/red]╔[red]██[/red]╗ [red]██[/red]║[red]█████[/red]╗  [red]██[/red]║ [red]█[/red]╗ [red]██[/red]║    [red]██[/red]║   [red]██[/red]║[red]██████[/red]╔╝[red]██[/red]║  [red]██[/red]║[red]███████[/red]║   [red]██[/red]║   [red]█████[/red]╗  [red]██[/red]║
+                [red]██[/red]║╚[red]██[/red]╗[red]██[/red]║[red]██[/red]╔══╝  [red]██[/red]║[red]███[/red]╗[red]██[/red]║    [red]██[/red]║   [red]██[/red]║[red]██[/red]╔═══╝ [red]██[/red]║  [red]██[/red]║[red]██[/red]╔══[red]██[/red]║   [red]██[/red]║   [red]██[/red]╔══╝  ╚═╝
+                [red]██[/red]║ ╚[red]████[/red]║[red]███████[/red]╗╚[red]███[/red]╔[red]███[/red]╔╝    ╚[red]██████[/red]╔╝[red]██[/red]║     [red]██████[/red]╔╝[red]██[/red]║  [red]██[/red]║   [red]██[/red]║   [red]███████[/red]╗[red]██[/red]╗
+                # [red]╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝[/red]
+                    [red]Looks like this SPYSE {maj} is outdated [/red]'''
+        console.print(update_banner)
         fin = str(input(
             f'[yellow][>>>][/yellow]You want to update to the latest version? (y/n):'))
         if fin == "n":
@@ -46,23 +46,24 @@ def version():
             up = e.text
             with open('common.py', "w", encoding="utf-8") as file:
                 file.write(up)
-            
+    os.system('cls||clear')
+
 
 def validate_webhook(webhook):
     stat = requests.get(webhook).json()
     try:
-        name = stat['name']
-        name = 2
+        try:
+            name = stat['name']
+            name = 2
+        except:
+            name = 1
+        if name == 2:
+            console.print('[green][[/green][purple]?[/purple][green]][/green][purple]Webhook invalid ! [/purple] ')
+            console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+            main()
     except:
-        name = 1
-    if name == 2:
-        pass
-    if name == 1:
-        console.print(f'[green][[/green][purple]?[/purple][green]][/green][purple]Webhook invalid ! [/purple] ')
-        console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        console.print('[green][[/green][purple]?[/purple][green]][/green][purple]Webhook invalid ! [/purple] ')
         main()
-
-
 
 def validateToken(token):
     r = requests.get('https://discord.com/api/v9/users/@me', headers=getheaders(token))
@@ -86,16 +87,35 @@ def getheaders(token):
 
 def setting():
     setting_banner = """
-    ╔═══════════════════════════════════════════════════╗
+    [purple]╔════════════╗[/purple]
     [green]{[/green][purple]1[/purple][green]}[/green] Proxies 
-    [green]{[/green][purple]2[/purple][green]}[/green] Exit 
-    ╚═══════════════════════════════════════════════════╝
+    [green]{[/green][purple]2[/purple][green]}[/green] Licence
+    [green]{[/green][purple]3[/purple][green]}[/green] Exit 
+    [purple]╚════════════╝[/purple]
     """
-
+    print(setting_banner)
     choice = console.input("[green][[/green][purple]?[/purple][green]][/green][purple] Your choice :[/purple] ")
-    if choice:
-        pass
+    if choice == "3":
+        main()
+    if choice == "1":
+        console.print("[green]setting proxies successfully[/green]")
+        main()
+    if choice == "2":
+        print()
+        console.print("[green]Discord : [/green][purple]BKS#1958[/purple]")
+        console.print("[green]shop : [/green][purple]https://discord.gg/Dvu6s4TBFP[/purple]")
+        console.print('[green]github = [/green][purple]https://github.com/heygdrg[/purple]')
+        print()
+        console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        
+        main()
 
+def report():
+    message = console.input("[green][[/green][purple]?[/purple][green]][/green] [purple]tell us what wrong [please join your discord #][/purple] : ")
+    r = requests.post(webhook,json={'username': 'SPYSE report bot', 'content': message})
+    console.print("[green][[/green][purple]![/purple][green]][/green] [purple]report succesfully sent thank you for your support[/purple]")
+    console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+    main()
 
 def token_info():
     os.system(f'Title - Spyse - Token info')
@@ -201,38 +221,42 @@ def Leaver():
 
 
 def Webhook_Spammer():
-    os.system(f'Title - Spyse - Webhook spamer')
-    webhook = console.input('[green][[/green][purple]?[/purple][green]][/green] enter [purple]webhook[/purple] : ')
-    validate_webhook(webhook)
-    Message = console.input("[green][[/green][purple]?[/purple][green]][/green] what you want to [purple]say[/purple] : ")
-    print("\"ctrl + c\" at anytime to stop\n")
-    time.sleep(1.5)
-    for i in range(30):
-        response = requests.post(
-            webhook, json = {"content" : Message}, params = {'wait' : True})
-    console.print(f'[green][[/green][purple]?[/purple][green]][/green] Spammed Webhook Successfully! ')
-    console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
-    main()
-
+    try:
+        os.system(f'Title - Spyse - Webhook spamer')
+        webhook = console.input('[green][[/green][purple]?[/purple][green]][/green] enter [purple]webhook[/purple] : ')
+        validate_webhook(webhook)
+        Message = console.input("[green][[/green][purple]?[/purple][green]][/green] what you want to [purple]say[/purple] : ")
+        print("\"ctrl + c\" at anytime to stop\n")
+        time.sleep(1.5)
+        for i in range(30):
+            response = requests.post(
+                webhook, json = {"content" : Message}, params = {'wait' : True})
+        console.print(f'[green][[/green][purple]?[/purple][green]][/green] Spammed Webhook Successfully! ')
+        console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        main()
+    except:
+        console.print("[red][[/red][purple]?[/purple][red]][/red] An error occured. . . ")
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        pass
 
 
 
 
 def webhook_deleter():
-
-    os.system(f'Title - Spyse - Webhook deleter')
-    webhook = console.input(f'[green][[/green][purple]?[/purple][green]][/green]Enter [purple]webhook URL[/purple]: ')
-    validate_webhook(webhook)
-    stat = requests.get(webhook).json()
-    name = stat['name']
-    r = requests.delete(webhook)
-    print(f'[green][[/green][purple]![/purple][green]][/green] Delete webhook [purple]name {name}[/purple]! ')
-    console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
-    main()
-
-
-
-
+    try:
+        os.system(f'Title - Spyse - Webhook deleter')
+        webhook = console.input(f'[green][[/green][purple]?[/purple][green]][/green]Enter [purple]webhook URL[/purple]: ')
+        validate_webhook(webhook)
+        stat = requests.get(webhook).json()
+        name = stat['name']
+        r = requests.delete(webhook)
+        print(f'[green][[/green][purple]![/purple][green]][/green] Delete webhook [purple]name {name}[/purple]! ')
+        console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        main()
+    except:
+        console.print("[red][[/red][purple]?[/purple][red]][/red] An error occured. . . ")
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        pass
 
 def DmDeleter():
 
@@ -248,7 +272,7 @@ def DmDeleter():
 
 
 def main():
-
+    version()
     os.system(f'Title - Spyse - {maj}')
     os.system('cls||clear')
 
@@ -267,7 +291,7 @@ def main():
                             ║  [green]{[/green][purple]2[/purple][green]}[/green] Webhook deleter         [green]{[/green][purple]7[/purple][green]}[/green] Seizure          ║
                             ║  [green]{[/green][purple]3[/purple][green]}[/green] Webhook spamer          [green]{[/green][purple]8[/purple][green]}[/green] Token info       ║
                             ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]9[/purple][green]}[/green] Setting          ║
-                            ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker                                  ║                                                                                                                                                 
+                            ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker             [green]{[/green][purple]10[/purple][green]}[/green] Make a report   ║                                                                                                                                                 
                             ╚═══════════════════════════════════════════════════╝
                  
 
@@ -294,6 +318,8 @@ def main():
         token_info()
     if choice == "9":
         setting()
+    if choice == "10":
+        report()
     else:
         os.system('cls||clear')
         main()
