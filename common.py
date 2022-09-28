@@ -1,4 +1,4 @@
-#version test 2 
+#version test 3
 import sys
 import requests
 import colorama
@@ -11,7 +11,7 @@ import os
 from os import system
 console = get_console()
 
-maj = 'V1'
+maj = 'V3'
 
 
 def version():
