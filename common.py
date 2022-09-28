@@ -1,5 +1,5 @@
 #version test 2 
-
+import sys
 import requests
 import colorama
 from colorama import *
@@ -11,7 +11,7 @@ import os
 from os import system
 console = get_console()
 
-maj = 'V2'
+maj = 'V1'
 
 
 def version():
@@ -22,10 +22,19 @@ def version():
     with open('version.txt') as file:
         txt = file.read()
     if mode == txt:
-        print('>>> No new version found continue ')
         time.sleep(1)
     else:
-        fin = input(">>> a new version of SPYSE is available do you want to update ? [y/n]")
+        os.system("Title - SPYSE New Update Found!")
+        print(f'''{Fore.YELLOW}
+                ███╗   ██╗███████╗██╗    ██╗    ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗██╗
+                ████╗  ██║██╔════╝██║    ██║    ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║
+                ██╔██╗ ██║█████╗  ██║ █╗ ██║    ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  ██║
+                ██║╚██╗██║██╔══╝  ██║███╗██║    ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ╚═╝
+                ██║ ╚████║███████╗╚███╔███╔╝    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██╗
+                ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝
+                    {Fore.RED}Looks like this SPYSE {maj} is outdated '''.replace('█', f'{Fore.WHITE}█{Fore.RED}'), end="\n\n")
+        fin = str(input(
+            f'[yellow][>>>][/yellow]You want to update to the latest version? (y/n):'))
         if fin == "n":
             pass
         else:
@@ -33,6 +42,11 @@ def version():
             update = d.text
             with open('common.py', "w", encoding="utf-8") as file:
                 file.write(update)
+            e = requests.get('https://raw.githubusercontent.com/heygdrg/Spyse/main/version.txt')
+            up = e.text
+            with open('common.py', "w", encoding="utf-8") as file:
+                file.write(up)
+            
 
 def validate_webhook(webhook):
     stat = requests.get(webhook).json()
@@ -284,7 +298,6 @@ def main():
         os.system('cls||clear')
         main()
 
-main()
-
+if sys.argv[1] == 'cle123': main()
 
 
