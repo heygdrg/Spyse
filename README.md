@@ -28,6 +28,9 @@ if you have a problem don't forget to make a report
 <p align="center">
 <img src="https://user-images.githubusercontent.com/94129991/192865169-d86f5b40-4ef5-4634-9b58-c739bef97eea.png", width="500", height="500">
 </p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/94129991/193100734-ff4699b7-43a9-476d-ae40-b796e48c5c40.PNG", width="500", height="500">
+</p>
 
 -----
 
@@ -55,6 +58,7 @@ if you have a problem don't forget to make a report
 ### <p align="center">📀 Dependencies 📀</p>
 
 <p align="center"><strong><i>In order for the program to work, you have to install all the ressources</i></strong</p>
+
 -----
 
 ### <p align="center">💡 Ideas 💡</p>
