@@ -51,7 +51,7 @@ def version():
                 file.write(update)
             e = requests.get('https://raw.githubusercontent.com/heygdrg/Spyse/main/version.txt')
             up = e.text
-            with open('common.py', "w", encoding="utf-8") as file:
+            with open('version.txt', "w", encoding="utf-8") as file:
                 file.write(up)
     os.system('cls||clear')
 
