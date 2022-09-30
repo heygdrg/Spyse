@@ -20,6 +20,10 @@ it's in devellopement and some features cannot be used
 <br><br>
 if you have a problem don't forget to make a report 
 <br><br>
+You have to install the following driver to use the tool 
+<br><br>
+https://chromedriver.storage.googleapis.com/index.html?path=105.0.5195.52/
+<br><br>
 <br><br><br>
 </strong>
 </p>
@@ -43,13 +47,13 @@ if you have a problem don't forget to make a report
 - Token Nuker
 - Server leaver
 - Seizure mode 
+- Token login
 - Token info
 - Automatic update
 
 ## Uncoming Features
 
 - Mass report
-- Logger
 - Token grabber
 - Theme gestionary
 
@@ -57,7 +61,7 @@ if you have a problem don't forget to make a report
 
 ### <p align="center">📀 Dependencies 📀</p>
 
-<p align="center"><strong><i>In order for the program to work, you have to install all the ressources</i></strong</p>
+<p align="center"><strong><i>In order for the program to work, you have to install the driver and all the ressources you can find the chromedriver on https://chromedriver.storage.googleapis.com/index.html?path=105.0.5195.52/</i></strong</p>
 
 -----
 
