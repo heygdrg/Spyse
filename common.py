@@ -14,8 +14,8 @@ from selenium import webdriver
 
 console = get_console()
 
-maj = 'V3.5.3'
-webhook = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
+maj = 'V3.5.4'
+webhook_report = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
 def version():
@@ -128,7 +128,7 @@ def setting():
 
 def report():
     message = console.input("[green][[/green][purple]?[/purple][green]][/green] [purple]tell us what wrong [please join your discord #][/purple] : ")
-    r = requests.post(webhook,json={'username': 'SPYSE report bot', 'content': message})
+    r = requests.post(webhook_report,json={'username': 'SPYSE report bot', 'content': message})
     console.print("[green][[/green][purple]![/purple][green]][/green] [purple]report succesfully sent thank you for your support[/purple]")
     console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
