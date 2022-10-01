@@ -160,6 +160,9 @@ def token_info():
 [green][[/green][purple]Email[/purple][green]][/green]           {email}
 [green][[/green][purple]Phone number[/purple][green]][/green]    {phone if phone else ""}
                     ''')
+    tr = requests.get("https://discord.com/api/v9/users/749504447989940235/profile?with_mutual_guilds=false",headers=getheaders(token)).json()
+    account = tr['connected_accounts']
+    print(account)
 
     console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
