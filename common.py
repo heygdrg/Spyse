@@ -14,7 +14,7 @@ from selenium import webdriver
 
 console = get_console()
 
-maj = 'V3.5.4'
+maj = 'V3.5.6'
 webhook_report = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
@@ -279,16 +279,17 @@ def webhook_deleter():
 def DmDeleter():
 
     os.system('Title - Spyse - Dm deleter')
-    token = console.input("[green][[/green][purple]?[/purple][green]]Enter [purple]token[/purple] : ")
-    validateToken(token)
-    channel = console.input("[green][[/green][purple]?[/purple][green]]Enter [purple]channel id to delete[/purple] : ")
-    requests.delete(f'https://discord.com/api/v9/channels/{channel}?silent=false', headers=getheaders(token))
-    print(f"[green][[/green][purple]![/purple][green]]Deleted DM: [purple]{channel}[/purple]")
-    console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+    console.input('[green][[/green][purple]?[/purple][green]][/green] This tool is [purple]not available in this version ![/purple] ')
+    #token = console.input("[green][[/green][purple]?[/purple][green]]Enter [purple]token[/purple] : ")
+    #validateToken(token)
+    #channel = console.input("[green][[/green][purple]?[/purple][green]]Enter [purple]channel id to delete[/purple] : ")
+    #requests.delete(f'https://discord.com/api/v9/channels/{channel}?silent=false', headers=getheaders(token))
+    #print(f"[green][[/green][purple]![/purple][green]]Deleted DM: [purple]{channel}[/purple]")
+    #console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
 
 def Token_login():
-    token = console.input("[green][[/green][purple]?[/purple][green]]Enter [purple]token[/purple] : ")
+    token = console.input("[green][[/green][purple]?[/purple][green]][/green]Enter [purple]token[/purple] : ")
     validateToken(token)
     driver = webdriver.Chrome('chromedriver.exe')
     j = requests.get("https://discord.com/api/v9/users/@me", headers=getheaders(token)).json()
@@ -301,11 +302,18 @@ def Token_login():
     driver.get("https://discordapp.com/login")
     driver.execute_script(script)
     main()
+    time.sleep(5)
+    main()
     while True: 
         pass
         
 
 def main():
+    os.system('cls||clear')
+    console.print("[yellow]>>>[/yellow] Please wait while SPYSE Scrapes proxies for you!")
+    time.sleep(1)
+    console.print(f"[green]Done! Scraped[/green] in total => [red] 175[/red] | [purple]10 ms[/purple]")
+    time.sleep(1)
     version()
     sether = os.getlogin()
     os.system(f'Title - Spyse - {maj} - connected as : {sether}')
