@@ -14,7 +14,7 @@ from selenium import webdriver
 
 console = get_console()
 
-maj = 'V3.5.6'
+maj = 'V3.5.7'
 webhook_report = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
@@ -167,6 +167,7 @@ def token_info():
     console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
 
+
 def BioChanger():
     os.system(f'Title - Spyse - Bio changer')
     token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
@@ -280,6 +281,7 @@ def DmDeleter():
 
     os.system('Title - Spyse - Dm deleter')
     console.input('[green][[/green][purple]?[/purple][green]][/green] This tool is [purple]not available in this version ![/purple] ')
+    console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     #token = console.input("[green][[/green][purple]?[/purple][green]]Enter [purple]token[/purple] : ")
     #validateToken(token)
     #channel = console.input("[green][[/green][purple]?[/purple][green]]Enter [purple]channel id to delete[/purple] : ")
@@ -289,6 +291,7 @@ def DmDeleter():
     main()
 
 def Token_login():
+    os.system('Title - Spyse - Token login')
     token = console.input("[green][[/green][purple]?[/purple][green]][/green]Enter [purple]token[/purple] : ")
     validateToken(token)
     driver = webdriver.Chrome('chromedriver.exe')
@@ -307,13 +310,15 @@ def Token_login():
     while True: 
         pass
         
+def grabber():
+    os.system('Title - Spyse - password grabber') 
+    console.input('[green][[/green][purple]?[/purple][green]][/green] Discord password grabber [purple]not available at the moment ![/purple] ')
+    console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+    main()
+
 
 def main():
     os.system('cls||clear')
-    console.print("[yellow]>>>[/yellow] Please wait while SPYSE Scrapes proxies for you!")
-    time.sleep(1)
-    console.print(f"[green]Done! Scraped[/green] in total => [red] 175[/red] | [purple]10 ms[/purple]")
-    time.sleep(1)
     version()
     sether = os.getlogin()
     os.system(f'Title - Spyse - {maj} - connected as : {sether}')
@@ -328,12 +333,13 @@ def main():
                                     [green]███████[/green]║[green]██[/green]║        [green]██[/green]║   [green]███████[/green]║[green]███████[/green]╗    
                                     ╚══════╝╚═╝        ╚═╝   ╚══════╝╚══════╝    
                             ╔═══════════════════════════════════════════════════╗                                             
-                            ║  [green]{[/green][purple]1[/purple][green]}[/green] [red]Dm deleter[/red]              [green]{[/green][purple]7[/purple][green]}[/green] Server leaver    ║
-                            ║  [green]{[/green][purple]2[/purple][green]}[/green] Webhook deleter         [green]{[/green][purple]8[/purple][green]}[/green] Seizure          ║
-                            ║  [green]{[/green][purple]3[/purple][green]}[/green] Webhook spamer          [green]{[/green][purple]9[/purple][green]}[/green] Token info       ║
-                            ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]10[/purple][green]}[/green] Setting         ║
-                            ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker             [green]{[/green][purple]11[/purple][green]}[/green] Make a report   ║                                                                                                                                                 
-                            ║  [green]{[/green][purple]6[/purple][green]}[/green] Login token             [green]{[/green][purple]12[/purple][green]}[/green] Exit            ║
+                            ║  [green]{[/green][purple]1[/purple][green]}[/green] [red]Dm deleter[/red]              [green]{[/green][purple]8[/purple][green]}[/green] Server leaver    ║
+                            ║  [green]{[/green][purple]2[/purple][green]}[/green] Webhook deleter         [green]{[/green][purple]9[/purple][green]}[/green] Seizure          ║
+                            ║  [green]{[/green][purple]3[/purple][green]}[/green] Webhook spamer          [green]{[/green][purple]10[/purple][green]}[/green] Token info      ║
+                            ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]11[/purple][green]}[/green] Setting         ║
+                            ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker             [green]{[/green][purple]12[/purple][green]}[/green] Make a report   ║                                                                                                                                                 
+                            ║  [green]{[/green][purple]6[/purple][green]}[/green] Login token             [green]{[/green][purple]13[/purple][green]}[/green] Exit            ║
+                            ║  [green]{[/green][purple]7[/purple][green]}[/green] grabber[green] {[/green][purple]soon[/purple][green]}[/green]                               ║
                             ╚═══════════════════════════════════════════════════╝
                  
     """
@@ -354,16 +360,18 @@ def main():
     if choice == "6":
         Token_login()
     if choice == "7":
-        Leaver()
+        grabber()
     if choice == "8":
-        StartSeizure()
+        Leaver()
     if choice == "9":
-        token_info()
+        StartSeizure()
     if choice == "10":
-        setting()
+        token_info()
     if choice == "11":
-        report()
+        setting()
     if choice == "12":
+        report()
+    if choice == "13":
         raise SystemExit
     else:
         os.system('cls||clear')
