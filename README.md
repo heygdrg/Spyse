@@ -50,6 +50,7 @@ https://chromedriver.storage.googleapis.com/index.html?path=105.0.5195.52/
 - Token login
 - Token info
 - Automatic update
+- Status changer
 
 ## Uncoming Features
 
