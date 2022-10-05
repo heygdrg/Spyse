@@ -14,7 +14,7 @@ from selenium import webdriver
 
 console = get_console()
 
-maj = 'V3.5.7'
+maj = 'V3.6.7'
 webhook_report = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
@@ -294,25 +294,51 @@ def Token_login():
     os.system('Title - Spyse - Token login')
     token = console.input("[green][[/green][purple]?[/purple][green]][/green]Enter [purple]token[/purple] : ")
     validateToken(token)
-    driver = webdriver.Chrome('chromedriver.exe')
-    j = requests.get("https://discord.com/api/v9/users/@me", headers=getheaders(token)).json()
-    user = j["username"] + "#" + str(j["discriminator"])
-    script = """
-            document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage.token = `"%s"`
-            location.reload();
-            """ % (token)
-    console.print(f"[green][[/green][purple]![/purple][green]][/green] Connecting to {user}")
-    driver.get("https://discordapp.com/login")
-    driver.execute_script(script)
-    main()
-    time.sleep(5)
-    main()
-    while True: 
-        pass
+    try:
+        driver = webdriver.Chrome('chromedriver.exe')
+        j = requests.get("https://discord.com/api/v9/users/@me", headers=getheaders(token)).json()
+        user = j["username"] + "#" + str(j["discriminator"])
+        script = """
+                document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage.token = `"%s"`
+                location.reload();
+                """ % (token)
+        console.print(f"[green][[/green][purple]![/purple][green]][/green] Connecting to {user}")
+        driver.get("https://discordapp.com/login")
+        driver.execute_script(script)
+        main()
+        time.sleep(5)
+        main()
+        while True: 
+            pass
+    except:
+        console.print("[red][[/red][purple]?[/purple][red]][/red] An error occured. . . ")
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        main()
         
-def grabber():
-    os.system('Title - Spyse - password grabber') 
-    console.input('[green][[/green][purple]?[/purple][green]][/green] Discord password grabber [purple]not available at the moment ![/purple] ')
+def statut_changer():
+    os.system('Title - Spyse - status changer') 
+    token = console.input("[green][[/green][purple]?[/purple][green]][/green]Enter [purple]token[/purple] : ")
+    validateToken(token)
+    console.print("""[purple]╔════════════╗[/purple]
+[green]{[/green][purple]1[/purple][green]} Offline[/green]
+[green]{[/green][purple]2[/purple][green]} Online[/green]
+[green]{[/green][purple]3[/purple][green]} Do not disturb [/green]
+[purple]╚════════════╝[/purple]""")
+    status = console.input("[green][[/green][purple]?[/purple][green]][/green] [purple]Your choice[/purple] : ")
+    if status == "1":
+        mode = "invisible"
+    if status == "2":
+        mode = "online"
+    if status == "3":
+        mode = "dnd"
+    else:
+        console.print("[red][[/red][purple]?[/purple][red]][/red] An error occured. . . ")
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        main()
+    setting = {'status': mode}
+    r = requests.patch("https://discord.com/api/v9/users/@me/settings", headers=getheaders(token), json=setting).json()
+    stat = r["status"]
+    console.print(f'[green][[/green][purple]![/purple][green]][/green] Statut set to [purple]{stat}[/purple]')
     console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
     main()
 
@@ -339,7 +365,7 @@ def main():
                             ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]11[/purple][green]}[/green] Setting         ║
                             ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker             [green]{[/green][purple]12[/purple][green]}[/green] Make a report   ║                                                                                                                                                 
                             ║  [green]{[/green][purple]6[/purple][green]}[/green] Login token             [green]{[/green][purple]13[/purple][green]}[/green] Exit            ║
-                            ║  [green]{[/green][purple]7[/purple][green]}[/green] grabber[green] {[/green][purple]soon[/purple][green]}[/green]                               ║
+                            ║  [green]{[/green][purple]7[/purple][green]}[/green] Status changer                               ║
                             ╚═══════════════════════════════════════════════════╝
                  
     """
@@ -360,7 +386,7 @@ def main():
     if choice == "6":
         Token_login()
     if choice == "7":
-        grabber()
+        statut_changer()
     if choice == "8":
         Leaver()
     if choice == "9":
