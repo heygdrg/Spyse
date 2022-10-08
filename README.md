@@ -40,18 +40,19 @@ https://chromedriver.storage.googleapis.com/index.html?path=105.0.5195.52/
 
 ## Features 
 
-- DM deleter
+- DM deleter (in maintenance)
 - Webhook deleter
 - Webhook spamer
 - Bio changer
 - Token Nuker
+- Call crasher
 - Server leaver
 - Seizure mode 
 - Token login
 - Token info
 - Automatic update
 - Status changer
-
+- Token sender
 ## Uncoming Features
 
 - Mass report
