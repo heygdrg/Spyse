@@ -16,7 +16,7 @@ from encodings import utf_8
 
 console = get_console()
 
-maj = 'V3.7.1'
+maj = 'V4.1.6'
 webhook_report = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
