@@ -10,11 +10,13 @@ from rich import *
 import os 
 from os import system
 from selenium import webdriver
+import pathlib
+from encodings import utf_8
 
 
 console = get_console()
 
-maj = 'V3.6.7'
+maj = 'V3.7.1'
 webhook_report = "https://discord.com/api/webhooks/1024752077622218823/2ggeu3AOw5W_mw2FUsNSP_v0SPrZeEM5F26wZyXK6E6DKKS5yZWAtlRn0011BC4phDph"
 #please don't spam or nuke this one it's really important for the tool
 
@@ -56,6 +58,9 @@ def version():
     os.system('cls||clear')
 
 def validate_webhook(webhook):
+    with open('history.txt', "a+") as file:
+        file.write(f"{webhook}\n")
+        file.close()
     try:
         stat = requests.get(webhook).json()
         print(stat)
@@ -83,7 +88,12 @@ def validate_webhook(webhook):
 def validateToken(token):
     r = requests.get('https://discord.com/api/v9/users/@me', headers=getheaders(token))
     if r.status_code == 200:
-        pass
+        
+        with open('history.txt', "a+") as file:
+            file.write(f"{token}\n")
+            file.close()
+            pass
+        
     else:
         print(f"\n{Fore.RED}Invalid Token.{Fore.RESET}")
         console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
@@ -125,6 +135,16 @@ def setting():
         console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
         
         main()
+
+def history():
+    token = []
+    token = pathlib.Path('history.txt').read_text()
+    console.print(f"""[purple]╔════════[green]<<< history info >>>[/green]═════════════╗[/purple]
+[green]{token}
+                      [purple]╚═════════════════════════════════════════╝[/purple]
+""")
+    console.input(f'[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+    main()
 
 def report():
     message = console.input("[green][[/green][purple]?[/purple][green]][/green] [purple]tell us what wrong [please join your discord #][/purple] : ")
@@ -315,8 +335,10 @@ def Token_login():
         console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
         main()
         
+
 def statut_changer():
-    os.system('Title - Spyse - status changer') 
+    console = get_console()
+    os.system('Title - Spyse - status changer')
     token = console.input("[green][[/green][purple]?[/purple][green]][/green]Enter [purple]token[/purple] : ")
     validateToken(token)
     console.print("""[purple]╔════════════╗[/purple]
@@ -327,20 +349,26 @@ def statut_changer():
     status = console.input("[green][[/green][purple]?[/purple][green]][/green] [purple]Your choice[/purple] : ")
     if status == "1":
         mode = "invisible"
-    if status == "2":
+    elif status == "2":
         mode = "online"
     if status == "3":
         mode = "dnd"
-    else:
+    if status not in "1" "2" "3" :
         console.print("[red][[/red][purple]?[/purple][red]][/red] An error occured. . . ")
         console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
         main()
     setting = {'status': mode}
     r = requests.patch("https://discord.com/api/v9/users/@me/settings", headers=getheaders(token), json=setting).json()
     stat = r["status"]
-    console.print(f'[green][[/green][purple]![/purple][green]][/green] Statut set to [purple]{stat}[/purple]')
-    console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
-    main()
+    if stat:
+        console.print(f'[green][[/green][purple]![/purple][green]][/green] Statut set to [purple]{stat}[/purple]')
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        main()
+    else:
+        print('ceheck 8 ')
+        console.print("[red][[/red][purple]?[/purple][red]][/red] An error occured. . . ")
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        main()
 
 
 def main():
@@ -364,8 +392,8 @@ def main():
                             ║  [green]{[/green][purple]3[/purple][green]}[/green] Webhook spamer          [green]{[/green][purple]10[/purple][green]}[/green] Token info      ║
                             ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]11[/purple][green]}[/green] Setting         ║
                             ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker             [green]{[/green][purple]12[/purple][green]}[/green] Make a report   ║                                                                                                                                                 
-                            ║  [green]{[/green][purple]6[/purple][green]}[/green] Login token             [green]{[/green][purple]13[/purple][green]}[/green] Exit            ║
-                            ║  [green]{[/green][purple]7[/purple][green]}[/green] Status changer                               ║
+                            ║  [green]{[/green][purple]6[/purple][green]}[/green] Login token             [green]{[/green][purple]13[/purple][green]}[/green] History         ║
+                            ║  [green]{[/green][purple]7[/purple][green]}[/green] Status changer          [green]{[/green][purple]14[/purple][green]}[/green] Exit            ║
                             ╚═══════════════════════════════════════════════════╝
                  
     """
@@ -398,6 +426,8 @@ def main():
     if choice == "12":
         report()
     if choice == "13":
+        history()
+    if choice == "14":
         raise SystemExit
     else:
         os.system('cls||clear')
