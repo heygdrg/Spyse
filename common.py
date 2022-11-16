@@ -230,6 +230,7 @@ def spamer():
     token = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Token[/purple] : ")
     validateToken(token)
     channel = console.input(f"[green][[/green][purple]?[/purple][green]][/green][purple] Channel[/purple] : ")
+    console.print("[green][[/green][purple]![/purple][green]][/green][green]"ctrl + c" at anytime to [/green][purple]stop[/purple]")
     try:
         for i in range(500):
             setting = {'region': random.choice(['brazil','hongkong','india','japan','rotterdam','russia','russia','southafrica','us-east','us-south','us-west'])}
